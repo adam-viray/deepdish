@@ -453,7 +453,7 @@ def _load_nonlink_level(handler, level, pathtable, pathname):
             if strtype == b'unicode':
                 return level[:].view(dtype=(np.unicode_, itemsize))
             elif strtype == b'ascii':
-                return level[:].view(dtype=(np.string_, itemsize))
+                return level[:].view(dtype=(np.bytes_, itemsize))
         # This serves two purposes:
         # (1) unpack big integers: the only time we save arrays like this
         # (2) unpack non-deepdish "scalars"
