@@ -118,7 +118,7 @@ def _save_ndarray(handler, group, name, x, filters=None):
         itemsize = x.itemsize // 4
         atom = tables.UInt8Atom()
         x = x.view(dtype=np.uint8)
-    elif np.issubdtype(x.dtype, np.string_):
+    elif np.issubdtype(x.dtype, np.bytes_):
         strtype = b'ascii'
         itemsize = x.itemsize
         atom = tables.StringAtom(itemsize)
@@ -322,7 +322,7 @@ def _load_specific_level(handler, grp, path, sel=None, pathtable=None):
             if sel is not None:
                 raise ValueError("Cannot slice this type")
             v = grp._v_attrs[vv[0]]
-            if isinstance(v, np.string_):
+            if isinstance(v, np.bytes_):
                 v = v.decode('utf-8')
             return v
         else:
